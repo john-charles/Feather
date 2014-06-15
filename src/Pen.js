@@ -7,28 +7,17 @@
         }
         
         this.el = el;
-        
-        
-        var selectStart = false, shiftKey = false, mouseDown = false;
+        var justFocused = false, selection = new Selection();
         
         el.addEventListener('selectstart', function(){
-            console.log('selectStart');
-            selectStart = true;
+            selection.selectStart();
         });
         
         el.addEventListener('keydown', function(event){
             
-            var selection, keyCode = event.key || event.keyCode;
+            var keyCode = event.key || event.keyCode;
             if(keyCode === 16){
-                shiftDown = true;
-            }
-            
-            
-            
-            selection = window.getSelection();
-            if(!selection.getRangeAt(0).collapsed && keyCode >= 37 && keyCode <= 40){
-                selectStart = true;
-                console.log('pseudo selectStart');
+                selection.shiftDown();
             }
             
         });
@@ -37,34 +26,34 @@
             
             var keyCode = event.key || event.keyCode;
             if(keyCode === 16){
-                shiftDown = false;
-                
-                if(selectStart){
-                    selectStart = false;
-                    console.log('event: selectEnd');
-                }
+                selection.shiftUp();
             }
             
-            
+        });
+        
+        el.addEventListener('focus', function(){            
+            justFocused = true;
         });
         
         el.addEventListener('mousedown', function(event){
-            console.log('mousedown');
-            mouseDown = true;
+            if(el.hasFocus){
+                selection.mouseDown();
+            }
         });
         
         el.addEventListener('mouseup', function(event){
-            console.log('mouseup');
-            
-            if(selectStart){
-                selectStart = false;
-                console.log('event: selectEnd');
-            }
-            
-            mouseDown = false;
+            if(justFocused){                
+                justFocused = false;
+                event.preventDefault();
+                selection.focus();
+            } else {                
+                selection.mouseUp();
+            }            
         });
         
-    }    
+        
+        
+    }
     
     return Pen;
     
