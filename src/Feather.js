@@ -10,7 +10,7 @@
         var justFocused = false, selection = new Selection();
         
         this.selection = selection;
-        this.customCommands = Object.create(null);
+        this.commands = Object.create(null);
         
         el.addEventListener('selectstart', function(){
             selection.selectStart();

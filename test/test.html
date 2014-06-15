@@ -29,9 +29,8 @@
     <body>
         
         <input placeholder="An area to steal focus!" type="text">
-        <div class="feather" contentEditable="true">
-        
-        </div>
+        <button type="button" name="insertLink">Insert Link</button>
+        <div class="feather" contentEditable="true"></div>
         
         <script type="text/javascript">
         
@@ -39,6 +38,13 @@
                 
                 var el = document.querySelector('.feather');
                 var feather = new Feather(el);
+                
+                var button = document.querySelector('button[name=insertLink]');
+                button.addEventListener('click', function(){
+                    console.log('command is executing');
+                    var command = feather.getCommand('createLink');
+                    command.exec('http://www.google.com/');
+                });
                 
             });
         
