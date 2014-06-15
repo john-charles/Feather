@@ -1,6 +1,6 @@
-;define(['./feather/Selection'], function(Selection){
+;define(['./feather/Selection', './feather/Command'], function(Selection, Command){
     
-    function Pen(el){
+    function Feather(el){
         
         if(this === window){
             throw "Error, please instantiate a new Pen instance!";
@@ -8,6 +8,9 @@
         
         this.el = el;
         var justFocused = false, selection = new Selection();
+        
+        this.selection = selection;
+        this.customCommands = Object.create(null);
         
         el.addEventListener('selectstart', function(){
             selection.selectStart();
@@ -57,6 +60,35 @@
         
     }
     
-    return Pen;
+    Feather.prototype.use = function(extension){
+        extension(this);
+    }
+    
+    Feather.prototype.getCurrentSelection = function(){
+        return this.selection;
+    }
+    
+    Feather.prototype.registerCommand = function(commandName, command){
+        if(this.commands[commandName]){
+            throw "Feather does not currently support command chaining.";
+        }
+        
+        this.commands[commandName] = command;
+        
+    }
+    
+    Feather.prototype.getCommand = function(commandName){
+        var command = this.commands[commandName];
+        
+        if(!command){
+            command = this.commands[commandName] = new Command(commandName);
+        }
+        
+        return command;
+        
+    }   
+    
+    
+    return Feather;
     
 });
