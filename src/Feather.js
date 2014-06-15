@@ -1,3 +1,9 @@
+/**
+ * @author John-Charles D. Sokolow <john.charles.sokolow@gmail.com>
+ * 
+ * See License.txt distributed with this package for usage terms.
+ * 
+ * **/
 ;define(['./feather/Selection', './feather/Command'], function(Selection, Command){
     
     function Feather(el){
