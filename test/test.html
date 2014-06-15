@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="http://requirejs.org/docs/release/2.1.14/minified/require.js"></script>
+        <script type="text/javascript">
+            
+            require.config({
+                baseUrl: ".."
+            });
+        
+        </script>
+        
+        <style type="text/css">
+            body {
+                background-color: #F5f5f5;
+            }
+            
+            .pen {
+                
+                height: 300px;
+                width: 500px;
+                background-color: #FFF;
+            }
+            
+            
+        </style>
+        
+    </head>
+    <body>
+        
+        <div class="pen" contentEditable="true">
+        
+        </div>
+        
+        <script type="text/javascript">
+        
+            require(['src/Pen'], function(Pen){
+                
+                var el = document.querySelector('.pen');
+                var pen = new Pen(el);
+                
+            });
+        
+        
+        </script>
+        
+    </body>
+</html>
