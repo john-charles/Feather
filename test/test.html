@@ -15,7 +15,7 @@
                 background-color: #F5f5f5;
             }
             
-            .pen {
+            .feather {
                 
                 height: 300px;
                 width: 500px;
@@ -29,16 +29,16 @@
     <body>
         
         <input placeholder="An area to steal focus!" type="text">
-        <div class="pen" contentEditable="true">
+        <div class="feather" contentEditable="true">
         
         </div>
         
         <script type="text/javascript">
         
-            require(['src/Pen'], function(Pen){
+            require(['src/Feather'], function(Feather){
                 
-                var el = document.querySelector('.pen');
-                var pen = new Pen(el);
+                var el = document.querySelector('.feather');
+                var feather = new Feather(el);
                 
             });
         

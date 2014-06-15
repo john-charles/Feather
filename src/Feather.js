@@ -1,4 +1,4 @@
-;define(['./pen/Selection'], function(Selection){
+;define(['./feather/Selection'], function(Selection){
     
     function Pen(el){
         
