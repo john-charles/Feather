@@ -1,8 +1,8 @@
-==== Feather.js is a wrapper around contentEditable ====
+# Feather.js is a wrapper around contentEditable
 
 Feather is designed to be fast lightweight and extensible and is modeled loosely after the guardian scribe project.
 
-== Why a new project? ==
+## Why a new project? 
 
 Scribe while brillient in it's conception failes in some astonishing ways.
 
