@@ -27,12 +27,25 @@
     
     EventEmitter.prototype.once = function(eventName, callback){
         
-        var wrapper = function(){            
+        var off = this.off.bind(this);
+            
+        function wrapper(){            
+            
             callback.apply(this, arguments);
-            this.off(eventName, wrapper);
-        }.bind(this);
+            off(eventName, wrapper);
+        };
         
         this.on(eventName, wrapper);
+        
+    }
+    
+    EventEmitter.prototype.fire = function(eventName, args){
+        
+        var handlers = this.events[eventName] || [];
+        
+        handlers.forEach(function(handler){
+            handler.apply(this, args);
+        });
         
     }
     

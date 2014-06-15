@@ -1,9 +1,14 @@
-;define(function(){
+;define(['./EventEmitter'], function(EventEmitter){
     
     function Selection(){
+        
+        EventEmitter.call(this);
+        
         this.selecting = false;
         this.storeSelection();
     };
+    
+    Selection.prototype = Object.create(EventEmitter.prototype);
     
     Selection.prototype.storeSelection = function(){
         
@@ -13,6 +18,10 @@
             this.range = this.native.getRangeAt(0);
         } catch(e){
             this.range = null;
+        }
+        
+        if(this.range){
+            this.fire('change-selection', this.range);
         }
     }
     

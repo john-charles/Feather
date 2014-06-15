@@ -51,6 +51,10 @@
             }            
         });
         
+        selection.on('change-selection', function(){
+            console.log('selection changed');
+        });
+        
     }
     
     return Pen;
